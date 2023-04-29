@@ -1,8 +1,25 @@
-body {
+button.active {
+  background: black;
+  color: white;
 }
-
-h1 {
+div.active {
+  display: block;
 }
-
-p {
+div.inactive {
+  display: none;
+}
+div#resultOppoDiv.active {
+  display: inline;
+}
+div#resultOppoDiv.inactive {
+  display: none;
+}
+ul li{
+  display: inline;
+}
+img {
+  width: 100px;
+}
+strong {
+  font-size: 32px;
 }

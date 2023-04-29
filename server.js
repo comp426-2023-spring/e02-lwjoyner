@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 // Load minimist for command line argument parsing
 // https://www.npmjs.com/package/minimist
 const minimist = require('minimist')
+import {rps, rpsls} from './lib/rpsls.js';
 // Parse our command line arguments
 const args = minimist(process.argv.slice(2))
 // Are we debugging or testing?
@@ -72,6 +73,58 @@ app.use(morgan(':remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:htt
 const staticpath = args.stat || args.s || process.env.STATICPATH || path.join(__dirname, 'public')
 app.use('/', express.static(staticpath))
 // Create app listener
+app.use(express.json());
+
+app.get("/app", (req, res) => {
+    res.status(200);
+    res.send("200 OK");
+});
+
+app.get("/app/rps", (req, res) => {
+    res.status(200);
+    res.json(rps());
+});
+
+app.get("/app/rpsls", (req, res) => {
+    res.status(200);
+    res.json(rpsls());
+});
+
+app.get("/app/rps/play", (req, res) => {
+    res.status(200);
+    res.json(rps(req.query.shot));
+});
+
+app.post("/app/rps/play", (req, res) => {
+    res.status(200);
+    res.json(rps(req.body.shot));
+});
+
+app.get("/app/rpsls/play", (req, res) => {
+    res.status(200);
+    res.json(rpsls(req.query.shot));
+});
+
+app.post("/app/rpsls/play", (req, res) => {
+    res.status(200);
+    res.json(rpsls(req.body.shot));
+});
+
+app.get("/app/rps/play/:shot(rock|paper|scissors)", (req, res) => {
+    res.status(200);
+    res.json(rps(req.params.shot));
+});
+
+app.get("/app/rpsls/play/:shot(rock|paper|scissors|lizard|spock)", (req, res) => {
+    res.status(200);
+    res.json(rpsls(req.params.shot));
+});
+
+
+app.get("*", (req, res) => {
+    res.status(404);
+    res.send("404 NOT FOUND");
+});
 const server = app.listen(port)
 // Create a log entry on start
 let startlog = new Date().toISOString() + ' HTTP server started on port ' + port + '\n'

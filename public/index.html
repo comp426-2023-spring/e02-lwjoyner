@@ -1,12 +1,97 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <title>Rock</title>
+        <title>Rock Paper Scissors Lizard Spock</title>
         <!-- Link to your script file(s) and CSS in here somewhere -->
+        <script src="scripts.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="UTF-8">
     </head>
     <body>
 
     <!-- Your interface markup goes here -->
     <!-- For interface examples, look in the `/examples/` directory in the root of your starter code repo. -->
+        <nav>
+            <button id="homenav" onclick="homeNav()" class="active">Home</button>
+            <button id="rpsnav" onclick="rpsNav()" class>Play Rock Paper Scissors</button>
+            <button id="rpslsnav" onclick="rpslsNav()" class>Play Rock Paper Scissors Lizard Spock</button>
+            <button id="rpsrulesnav" onclick="rpsrulesNav()" class>Rock Paper Scissors Rules</button>
+            <button id="rpslsrulesnav" onclick="rpslsrulesNav()" class>Rock Paper Scissors Lizard Spock Rules</button>
+        </nav>
+        <div id="home">
+            <h1>Click a button above to choose a gamemode!</h1>
+        </div>
+        <div id="rps" class="inactive">
+            <h1>Rock Paper Scissors</h1>
+            <p>
+            <input type="checkbox" id="rpsoppo" name="rpsoppo" value="rpsoppo" onchange="rpsCheckHandler()">
 
+            <label for="rpsoppo">I want to play against an opponent</label><br>    
+            
+            <div id="rpsoppoDiv" class="inactive">
+                <p>
+                <label for="rpschoice">Rock, Paper, Scissors?</label>
+                <select name="rpschoice" id="rpschoice">
+                    <option value="rock">Rock</option>
+                    <option value="paper">Paper</option>
+                    <option value="scissors">Scissors</option>
+                </select>
+            </div>
+            <p>
+            <button id="rpsshoot" onclick="rpsShoot()">SHOOT!</button>
+        </div>
+        <div id="rpsls" class="inactive">
+            <h1>Rock Paper Scissors Lizard Spock</h1>
+            <p>
+            <input type="checkbox" id="rpslsoppo" name="rpslsoppo" value="rpslsoppo" onchange="rpslsCheckHandler()">
+
+            <label for="rpslsoppo">I want to play against an opponent</label><br>    
+            
+            <div id="rpslsoppoDiv" class="inactive">
+                <p>
+                <label for="rpslschoice">Rock, Paper, Scissors, Lizard, Spock?</label>
+                <select name="rpslschoice" id="rpslschoice">
+                    <option value="rock">Rock</option>
+                    <option value="paper">Paper</option>
+                    <option value="scissors">Scissors</option>
+                    <option value="lizard">Lizard</option>
+                    <option value="spock">Spock</option>
+                </select>
+            </div>
+            <p>
+            <button id="rpslsshoot" onclick="rpslsShoot()">SHOOT!</button>
+        </div>
+
+        <div id="rpsrules" class="inactive">
+            <h1>Rules for Rock Paper Scissors:</h1>
+            <strong>- Scissors CUTS Paper</strong><br>
+            <strong>- Paper COVERS Rock</strong><br>
+            <strong>- Rock CRUSHES Scissors</strong>
+        </div>
+
+        <div id="rpslsrules" class="inactive">
+            <h1>Rules for Rock Paper Scissors:</h1>
+            <strong>- Scissors CUTS Paper</strong><br>
+            <strong>- Paper COVERS Rock</strong><br>
+            <strong>- Rock SMOOSHES Lizard</strong><br>
+            <strong>- Lizard POISONS Spock</strong><br>
+            <strong>- Spock SMASHES Scissors</strong><br>
+            <strong>- Scissors DECAPITATES Lizard</strong><br>
+            <strong>- Lizard EATS Paper</strong><br>
+            <strong>- Paper DISPROVES Spock</strong><br>
+            <strong>- Spock VAPORIZES Rock</strong><br>
+            <strong>- Rock CRUSHES Scissors</strong>
+        </div>
+
+        <div id="resultDiv" class="inactive">
+            <br>
+            <img src="img/rock.jpg" id="shot" alt="shot">
+            <div id="resultOppoDiv" class="inactive">
+                <img src="img/vs.png" id="vs" alt="vs">
+                <span id="result"></span>
+            </div>
+            <p>
+            <button id="restart" onclick="homeNav()">Restart</button>
+        </div>
     </body>
 </html>
